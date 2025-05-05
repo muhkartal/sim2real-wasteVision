@@ -1,0 +1,177 @@
+{
+    "dataset_info": {
+        "name": "Istanbul Waste Detection Synthetic Dataset",
+        "date_created": "2023-11-01 12:00:00",
+        "num_images": 10000,
+        "image_format": "jpg",
+        "label_format": "yolo",
+        "resolution": [
+            1280,
+            720
+        ],
+        "classes": [
+            "PlasticBottle",
+            "SodaCan",
+            "PlasticBag",
+            "FaceMask",
+            "CardboardBox",
+            "CoffeeCup",
+            "CigaretteButt",
+            "FoodContainer"
+        ]
+    },
+    "generation_config": {
+        "seed": 42,
+        "environments": [
+            "BosphorusWaterfront",
+            "NarrowStreets",
+            "YildizPark",
+            "ModernPlaza"
+        ],
+        "lighting_conditions": [
+            "Sunny",
+            "Overcast",
+            "Dawn",
+            "Dusk"
+        ]
+    },
+    "statistics": {
+        "class_distribution": {
+            "PlasticBottle": 3468,
+            "SodaCan": 2589,
+            "PlasticBag": 2621,
+            "FaceMask": 1842,
+            "CardboardBox": 1735,
+            "CoffeeCup": 1853,
+            "CigaretteButt": 1693,
+            "FoodContainer": 1742
+        },
+        "environment_distribution": {
+            "BosphorusWaterfront": 2500,
+            "NarrowStreets": 2500,
+            "YildizPark": 2500,
+            "ModernPlaza": 2500
+        },
+        "lighting_distribution": {
+            "Sunny": 4000,
+            "Overcast": 3000,
+            "Dawn": 1500,
+            "Dusk": 1500
+        },
+        "altitude_ranges": {
+            "0-5m": 2312,
+            "5-10m": 5124,
+            "10-15m": 2564
+        },
+        "tilt_angle_ranges": {
+            "0-10°": 3478,
+            "10-20°": 3246,
+            "20-30°": 3276
+        },
+        "objects_per_image": {
+            "1-5": 3812,
+            "6-10": 5124,
+            "11-15": 1064
+        }
+    },
+    "splits": {
+        "train": {
+            "num_images": 8000,
+            "path": "images/train"
+        },
+        "val": {
+            "num_images": 1000,
+            "path": "images/val"
+        },
+        "test": {
+            "num_images": 1000,
+            "path": "images/test"
+        }
+    },
+    "images": [
+        {
+            "image_id": 0,
+            "filename": "img_000000.jpg",
+            "resolution": [
+                1280,
+                720
+            ],
+            "environment": "BosphorusWaterfront",
+            "lighting": {
+                "condition": "Sunny",
+                "intensity": 0.92,
+                "shadow_strength": 0.85
+            },
+            "drone": {
+                "position": [
+                    12.5,
+                    8.3,
+                    -7.2
+                ],
+                "altitude": 7.2,
+                "tilt_angle": 15.0,
+                "yaw": 145.2
+            },
+            "objects": [
+                "PlasticBottle",
+                "PlasticBottle",
+                "SodaCan",
+                "PlasticBag"
+            ],
+            "num_objects": 4,
+            "class_distribution": {
+                "PlasticBottle": 2,
+                "SodaCan": 1,
+                "PlasticBag": 1,
+                "FaceMask": 0,
+                "CardboardBox": 0,
+                "CoffeeCup": 0,
+                "CigaretteButt": 0,
+                "FoodContainer": 0
+            }
+        },
+        {
+            "image_id": 1,
+            "filename": "img_000001.jpg",
+            "resolution": [
+                1280,
+                720
+            ],
+            "environment": "YildizPark",
+            "lighting": {
+                "condition": "Overcast",
+                "intensity": 0.65,
+                "shadow_strength": 0.35
+            },
+            "drone": {
+                "position": [
+                    -5.8,
+                    12.1,
+                    -4.3
+                ],
+                "altitude": 4.3,
+                "tilt_angle": 8.5,
+                "yaw": 210.7
+            },
+            "objects": [
+                "CoffeeCup",
+                "CardboardBox",
+                "PlasticBag",
+                "CigaretteButt",
+                "CigaretteButt",
+                "CigaretteButt"
+            ],
+            "num_objects": 6,
+            "class_distribution": {
+                "PlasticBottle": 0,
+                "SodaCan": 0,
+                "PlasticBag": 1,
+                "FaceMask": 0,
+                "CardboardBox": 1,
+                "CoffeeCup": 1,
+                "CigaretteButt": 3,
+                "FoodContainer": 0
+            }
+        }
+    ]
+}

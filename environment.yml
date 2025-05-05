@@ -1,0 +1,24 @@
+name: istanbul-waste
+channels:
+   - conda-forge
+   - pytorch
+   - defaults
+dependencies:
+   - python=3.11
+   - pip
+   - numpy
+   - pandas
+   - matplotlib
+   - seaborn
+   - opencv
+   - pytorch=2.0
+   - torchvision
+   - jupyter
+   - scikit-learn
+   - pip:
+        - airsim==1.9.0
+        - ultralytics
+        - pyyaml
+        - tqdm
+        - pillow
+        - pycocotools

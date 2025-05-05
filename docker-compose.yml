@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+   api:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      image: istanbul-waste-detection:latest
+      container_name: waste-detection-api
+      restart: unless-stopped
+      ports:
+         - "8000:8000"
+      volumes:
+         - ./weights:/app/weights
+         - ./dataset:/app/dataset
+         - ./logs:/app/logs
+      environment:
+         - MODEL_PATH=/app/weights/synthetic_only.pt
+         - DATASET_PATH=/app/dataset
+         - HOST=0.0.0.0
+         - PORT=8000
+         - DEBUG=false
+      command: python api/main.py
+      healthcheck:
+         test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+         interval: 30s
+         timeout: 10s
+         retries: 3
+         start_period: 30s
+      networks:
+         - waste-detection-network
+
+   generator:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      image: istanbul-waste-detection:latest
+      container_name: waste-detection-generator
+      restart: "no"
+      volumes:
+         - ./weights:/app/weights
+         - ./dataset:/app/dataset
+         - ./logs:/app/logs
+      environment:
+         - PYTHONPATH=/app
+      command: python run_pipeline.py --skip-render --skip-train --skip-eval
+      depends_on:
+         - api
+      networks:
+         - waste-detection-network
+      profiles:
+         - generator
+
+   nginx:
+      image: nginx:alpine
+      container_name: waste-detection-nginx
+      restart: unless-stopped
+      ports:
+         - "80:80"
+      volumes:
+         - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+         - ./api/static:/usr/share/nginx/html/static
+      depends_on:
+         - api
+      networks:
+         - waste-detection-network
+
+networks:
+   waste-detection-network:
+      driver: bridge

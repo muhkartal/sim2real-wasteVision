@@ -1,0 +1,61 @@
+# Dataset Configuration
+input_dir: "dataset"
+output_dir: "dataset"
+format: "yolo"
+
+splits:
+   train: 0.8
+   val: 0.1
+   test: 0.1
+
+classes:
+   - id: 0
+     name: "PlasticBottle"
+   - id: 1
+     name: "SodaCan"
+   - id: 2
+     name: "PlasticBag"
+   - id: 3
+     name: "FaceMask"
+   - id: 4
+     name: "CardboardBox"
+   - id: 5
+     name: "CoffeeCup"
+   - id: 6
+     name: "CigaretteButt"
+   - id: 7
+     name: "FoodContainer"
+
+augmentation:
+   enabled: true
+   techniques:
+      - name: "RandomBrightness"
+        probability: 0.5
+        factor_range: [0.5, 1.5]
+      - name: "RandomContrast"
+        probability: 0.5
+        factor_range: [0.5, 1.5]
+      - name: "RandomNoise"
+        probability: 0.3
+        intensity_range: [0.01, 0.05]
+      - name: "RandomBlur"
+        probability: 0.3
+        kernel_size_range: [1, 3]
+      - name: "RandomFlip"
+        probability: 0.5
+        direction: "horizontal"
+
+metadata:
+   include_scene_info: true
+   include_lighting_info: true
+   include_waste_types: true
+   include_class_distribution: true
+
+process:
+   verify_labels: true
+   remove_invalid: true
+   balance_classes: false
+
+logging:
+   level: "INFO"
+   file: "logs/dataset_curation.log"

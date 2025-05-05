@@ -1,0 +1,3493 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Istanbul Waste Detection | Advanced Analytics Dashboard</title>
+      <!-- Favicon -->
+      <link
+         rel="icon"
+         type="image/png"
+         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEDUlEQVRYCe1WTWwbRRR+M7P+2bXjODFpk9RJ0xZBW0GFhKAHJA6AQEgIIXHgyA0kJA5cOMCJAxI3xAFuSAghgZA4cUAqEuoPEhIIUFuJtDRNmsSJ4x/Hrndnd2d4M7vjOLFbtw3iwpNWO/Pmzffe9973ZleYnwK8iI34RSa/8T8IkBafrG8F8/FsNT8h47HHV94YunFT9e9awGtSxD/Uc0dKjtaXpvfXp7xTHCZPXq2e5S0/fDRBmYBQKsWuPPGQJy9JY8R3yDlNwcqsRi30YbmHCDG9SyuGqXEDCG1vg5NdHGI80FQ1RhBwLShw3YGZOkqcCOOWNfXGXVScBT2UH8A/FjVR6ygCzsFrA6ESCQDIMEYRFdCIIiiInBKxz5fAkkbgc473sB+8QkYgDMWuBdQMK9AQ5XDyE0+sNV4btYrM86QCIaRCzLAXvIKAMxhBGHbsI01vIdoJFjoCu4EoOOgD1/E9Sw2ckFQrjGH2R2A1gSHNxgA0BAdEOwc7qVDxCh6Hbx8Ax5gvSM5xjvpvWSJkAYZCBV/VyC0y6Bq4KaBhB79Wx1lzU+cP3YeWCUCVQx2Fs8QYiQD1dMLSxAPKjx0DBLc2MCO/Qo28h4FvRSewG7uN5XORmyHbNeCDxBLOI4Fs+BO5fztqPAqDAGN8wBm/ixk/xbx8CjOcQRGDpE2VEFf7BO4v17Y74B2o+p/gBqUULVZjHNWhHxDPDpHrqjYkTuLc+3j3KGZ6JdkBlnTpxCADJa4XN/Aa+Wjl9BuHzUvlxSfVj40tFuDEHMO5ziD5KvKtwOjQzzj6AtJ/jB8vYva/JVzZZLPJLvG/HsXKPEbD8XbCZvbgOm5hBSRdh6LxPk6+KJYGUTpYx7aKK9yVB/8D4KDtF5Dlz7DvE1j6ffkUBvcpThRu+sdh4Wg44NfzM+Ku/D3eBVl/KdmdN1jy5Uh+WC61w1MXsD0NzPYLxvgKlh3r6Kw+F6OJTlHZC3K0S4RI0lEqx6gGQm7RKQ2X3MFDY3NrNyLp5FaqvMZVi4pv/JMH/p+UfxY44wZqQUibbGPGT/Md7wPwU4Tc9FtWjQGEUBaZX0r2wOzh7AXhsxfn7s3Rby9u4Ht5uQh5/SSTfCz5Oq3eMzMDzGMSd6JaI0y2iNJl0/JDCQBKDODJRr3sWzJQBH9Ss/RpMYgfQd5MV8eLZmHAMTjlnBhHww+OX3/5dKRV4f6GnLRQkMmvFOVmcMAx60XzrfywtcTU2RwTRq5W8MZO0VFqACp4IXRs5F43Zz0b6E57I+8f++T0rS/zDH9UXSiePXlzYnY+g6UOdhKt/P3RLyLXdD/8l6Q7Ov83Wjv58/JsaQAAAABJRU5ErkJggg=="
+      />
+      <!-- Fonts -->
+      <link
+         rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      />
+      <!-- Bootstrap 5.3 -->
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+      />
+      <!-- Font Awesome -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      />
+      <!-- Chart.js -->
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.min.css"
+      />
+      <!-- Custom styles -->
+      <style>
+         :root {
+            --primary-color: #0353a4;
+            --primary-dark: #023e7d;
+            --primary-light: #0466c8;
+            --secondary-color: #0da678;
+            --accent-color: #ffb627;
+            --danger-color: #d00000;
+            --success-color: #38b000;
+            --warning-color: #f48c06;
+            --info-color: #3f8efc;
+            --dark-color: #001233;
+            --light-color: #f8f9fa;
+            --grey-color: #eff1f3;
+            --grey-dark-color: #989ca3;
+            --dark-bg: #001845;
+            --dark-surface: #002855;
+            --dark-border: #033e8c;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+            --radius-sm: 5px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+            --header-height: 70px;
+         }
+
+         body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+               Ubuntu, Cantarell, "Open Sans", sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: var(--transition);
+            padding-top: var(--header-height);
+            min-height: 100vh;
+            letter-spacing: -0.01em;
+            line-height: 1.6;
+         }
+
+         body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--light-color);
+         }
+
+         .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: var(--header-height);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+         }
+
+         .dark-mode .navbar {
+            background-color: rgba(0, 24, 69, 0.9);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--dark-border);
+         }
+
+         .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
+         }
+
+         .dark-mode .navbar-brand {
+            color: white;
+         }
+
+         .navbar .nav-link {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            margin-left: 4px;
+         }
+
+         .navbar .nav-link:hover {
+            background-color: rgba(3, 83, 164, 0.06);
+            color: var(--primary-color);
+         }
+
+         .dark-mode .navbar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--info-color);
+         }
+
+         .card {
+            border: none;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            overflow: hidden;
+            height: 100%;
+         }
+
+         .card:hover {
+            box-shadow: var(--shadow-lg);
+         }
+
+         .dark-mode .card {
+            background-color: var(--dark-surface);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--dark-border);
+         }
+
+         .card-header {
+            background: linear-gradient(to right, rgba(3, 83, 164, 0.03), transparent);
+            border-bottom: 1px solid var(--grey-color);
+            font-weight: 600;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+         }
+
+         .dark-mode .card-header {
+            background: linear-gradient(to right, rgba(3, 91, 184, 0.1), transparent);
+            border-bottom: 1px solid var(--dark-border);
+         }
+
+         .card-header h5 {
+            margin-bottom: 0;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+         }
+
+         .card-header i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            opacity: 0.8;
+         }
+
+         .dark-mode .card-header i {
+            color: var(--info-color);
+         }
+
+         .card-body {
+            padding: 1.5rem;
+         }
+
+         .dark-mode .modal-content {
+            background-color: var(--dark-surface);
+            color: var(--light-color);
+            border: 1px solid var(--dark-border);
+         }
+
+         .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-md);
+         }
+
+         .btn-primary:hover,
+         .btn-primary:focus {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+         }
+
+         .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: var(--transition);
+            font-weight: 500;
+            border-radius: var(--radius-md);
+         }
+
+         .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow-sm);
+         }
+
+         .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+         }
+
+         .btn-secondary:hover {
+            background-color: #0c9269;
+            border-color: #0c9269;
+            box-shadow: var(--shadow-md);
+         }
+
+         .btn {
+            position: relative;
+            overflow: hidden;
+         }
+
+         .btn::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+         }
+
+         .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+         }
+
+         @keyframes ripple {
+            0% {
+               transform: scale(0, 0);
+               opacity: 0.6;
+            }
+            20% {
+               transform: scale(25, 25);
+               opacity: 0.4;
+            }
+            100% {
+               opacity: 0;
+               transform: scale(40, 40);
+            }
+         }
+
+         .logo {
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+            transition: var(--transition);
+         }
+
+         .dark-mode .logo {
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) brightness(1.1);
+         }
+
+         .theme-switch {
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-full);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            background-color: transparent;
+         }
+
+         .theme-switch:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+         }
+
+         .dark-mode .theme-switch {
+            color: var(--light-color);
+         }
+
+         .dark-mode .theme-switch:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+         }
+
+         #canvas-container {
+            position: relative;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+            background-color: transparent;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+         }
+
+         #output-canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            transition: var(--transition);
+            object-fit: contain;
+            background-color: white;
+            border-radius: var(--radius-md);
+         }
+
+         .dark-mode #output-canvas {
+            background-color: rgba(0, 40, 85, 0.8);
+         }
+
+         #visualization-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+         }
+
+         .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: var(--radius-md);
+         }
+
+         #loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+         }
+
+         .dark-mode #loading {
+            background-color: rgba(0, 24, 69, 0.85);
+            box-shadow: var(--shadow-lg);
+         }
+
+         .result-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 10px;
+            background-color: var(--grey-color);
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+         }
+
+         .result-item:hover {
+            transform: translateX(3px);
+            box-shadow: var(--shadow-sm);
+         }
+
+         .dark-mode .result-item {
+            background-color: rgba(3, 62, 140, 0.3);
+         }
+
+         .class-color {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+         }
+
+         .progress-radial {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--grey-color);
+            margin-left: auto;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+         }
+
+         .dark-mode .progress-radial {
+            background-color: rgba(0, 40, 85, 0.5);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+         }
+
+         .progress-radial .overlay {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+            text-align: center;
+            line-height: 32px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+         }
+
+         .dark-mode .progress-radial .overlay {
+            background-color: var(--dark-surface);
+            color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+         }
+
+         .progress-radial .progress {
+            position: absolute;
+            clip: rect(0, 44px, 44px, 22px);
+            width: 44px;
+            height: 44px;
+         }
+
+         .progress-radial .progress .progress-fill {
+            clip: rect(0, 22px, 44px, 0);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            transform: rotate(0deg);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+         }
+
+         .stats-card {
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+         }
+
+         .stats-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+               135deg,
+               rgba(255, 255, 255, 0.15) 0%,
+               rgba(255, 255, 255, 0) 100%
+            );
+            z-index: 0;
+         }
+
+         .dark-mode .stats-card::before {
+            background: linear-gradient(
+               135deg,
+               rgba(255, 255, 255, 0.05) 0%,
+               rgba(255, 255, 255, 0) 100%
+            );
+         }
+
+         .stats-card > * {
+            position: relative;
+            z-index: 1;
+         }
+
+         .stats-card.primary {
+            background-color: rgba(3, 83, 164, 0.08);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+         }
+
+         .stats-card.success {
+            background-color: rgba(13, 166, 120, 0.08);
+            color: var(--secondary-color);
+            border-left: 3px solid var(--secondary-color);
+         }
+
+         .stats-card.warning {
+            background-color: rgba(255, 182, 39, 0.08);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+         }
+
+         .dark-mode .stats-card.primary {
+            background-color: rgba(3, 83, 164, 0.15);
+            color: #4c9ef0;
+         }
+
+         .dark-mode .stats-card.success {
+            background-color: rgba(13, 166, 120, 0.15);
+            color: #30d19b;
+         }
+
+         .dark-mode .stats-card.warning {
+            background-color: rgba(255, 182, 39, 0.15);
+            color: #ffcb5c;
+         }
+
+         .stats-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.03em;
+            position: relative;
+            display: inline-block;
+         }
+
+         .stats-card .value::after {
+            content: "";
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: currentColor;
+            opacity: 0.1;
+            border-radius: var(--radius-sm);
+            z-index: -1;
+         }
+
+         .stats-card .label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+         }
+
+         .visualization-controls {
+            margin-bottom: 1rem;
+         }
+
+         .btn-viz {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--dark-color);
+            border: 1px solid transparent;
+            background-color: var(--grey-color);
+         }
+
+         .dark-mode .btn-viz {
+            background-color: rgba(3, 62, 140, 0.2);
+            color: var(--light-color);
+         }
+
+         .btn-viz:hover {
+            background-color: rgba(3, 83, 164, 0.08);
+            border-color: rgba(3, 83, 164, 0.2);
+         }
+
+         .dark-mode .btn-viz:hover {
+            background-color: rgba(3, 83, 164, 0.25);
+            border-color: rgba(63, 142, 252, 0.3);
+         }
+
+         .btn-viz.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow-sm);
+         }
+
+         .dark-mode .btn-viz.active {
+            background-color: var(--primary-light);
+         }
+
+         .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 56px;
+            height: 28px;
+         }
+
+         .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+         }
+
+         .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--grey-color);
+            transition: 0.4s;
+            border-radius: var(--radius-full);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+         }
+
+         .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+         }
+
+         input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+         }
+
+         input:checked + .toggle-slider:before {
+            transform: translateX(28px);
+         }
+
+         .dropdown-menu {
+            border: none;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            padding: 0.5rem;
+         }
+
+         .dropdown-item {
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+         }
+
+         .dark-mode .dropdown-menu {
+            background-color: var(--dark-surface);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--dark-border);
+         }
+
+         .dark-mode .dropdown-item {
+            color: var(--light-color);
+         }
+
+         .dark-mode .dropdown-item:hover {
+            background-color: rgba(3, 83, 164, 0.15);
+         }
+
+         .file-drop-area {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+            padding: 2.5rem 1.5rem;
+            border: 2px dashed rgba(3, 83, 164, 0.2);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            background-color: rgba(3, 83, 164, 0.02);
+            text-align: center;
+            cursor: pointer;
+         }
+
+         .dark-mode .file-drop-area {
+            border-color: rgba(63, 142, 252, 0.3);
+            background-color: rgba(3, 62, 140, 0.1);
+         }
+
+         .file-drop-area.is-active {
+            border-color: var(--primary-color);
+            background-color: rgba(3, 83, 164, 0.05);
+            transform: scale(0.99);
+         }
+
+         .dark-mode .file-drop-area.is-active {
+            background-color: rgba(3, 83, 164, 0.15);
+         }
+
+         .file-drop-area input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer;
+         }
+
+         .file-msg {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+         }
+
+         .dark-mode .file-msg {
+            color: var(--info-color);
+         }
+
+         .file-drop-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            opacity: 0.8;
+            transition: var(--transition);
+         }
+
+         .file-drop-area:hover .file-drop-icon {
+            transform: translateY(-5px);
+         }
+
+         .dark-mode .file-drop-icon {
+            color: var(--info-color);
+         }
+
+         .camera-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            display: none;
+            box-shadow: var(--shadow-md);
+         }
+
+         #camera-stream {
+            width: 100%;
+            background-color: var(--dark-color);
+            border-radius: var(--radius-md);
+            display: block;
+         }
+
+         .camera-control {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+         }
+
+         .btn-circular {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+         }
+
+         .btn-circular::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+               135deg,
+               rgba(255, 255, 255, 0.2) 0%,
+               rgba(255, 255, 255, 0) 60%
+            );
+            transition: var(--transition);
+         }
+
+         .btn-circular:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow-xl);
+         }
+
+         .btn-circular:hover::before {
+            transform: translateY(5px);
+         }
+
+         .gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 12px;
+            padding: 12px 0;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+         }
+
+         .gallery::-webkit-scrollbar {
+            display: none;
+         }
+
+         .gallery-item {
+            flex: 0 0 100px;
+            height: 100px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            border: 3px solid transparent;
+         }
+
+         .gallery-item:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: var(--shadow-md);
+         }
+
+         .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+         }
+
+         .gallery-item:hover img {
+            transform: scale(1.05);
+         }
+
+         .gallery-item.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(3, 83, 164, 0.2);
+         }
+
+         .dark-mode .gallery-item.active {
+            box-shadow: 0 0 0 3px rgba(63, 142, 252, 0.3);
+         }
+
+         .gallery-item .badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.4rem;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+         }
+
+         .classes-pie-chart {
+            height: 220px;
+            width: 100%;
+            margin: 1rem 0;
+         }
+
+         .threshold-tooltip {
+            position: absolute;
+            top: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: var(--shadow-md);
+         }
+
+         .threshold-tooltip.visible {
+            opacity: 1;
+         }
+
+         .threshold-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+         }
+
+         /* Animation */
+         @keyframes pulse {
+            0% {
+               transform: scale(1);
+            }
+            50% {
+               transform: scale(1.05);
+            }
+            100% {
+               transform: scale(1);
+            }
+         }
+
+         .pulse-animation {
+            animation: pulse 1.8s infinite;
+         }
+
+         .spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+         }
+
+         .spinner:before,
+         .spinner:after {
+            content: "";
+            display: block;
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary-color);
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+         }
+
+         .spinner:before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+         }
+
+         .spinner:after {
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border-top-color: var(--info-color);
+            animation-delay: 0.25s;
+         }
+
+         @keyframes spin {
+            0% {
+               transform: rotate(0deg);
+            }
+            100% {
+               transform: rotate(360deg);
+            }
+         }
+
+         .detection-summary {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            background-color: rgba(3, 83, 164, 0.04);
+            transition: var(--transition);
+            border-left: 3px solid var(--primary-color);
+         }
+
+         .dark-mode .detection-summary {
+            background-color: rgba(3, 83, 164, 0.08);
+         }
+
+         /* Responsive adjustments */
+         @media (max-width: 768px) {
+            .stats-container {
+               display: grid;
+               grid-template-columns: 1fr 1fr;
+               gap: 0.8rem;
+            }
+
+            .stats-card {
+               padding: 1rem;
+            }
+
+            .stats-card .value {
+               font-size: 1.75rem;
+            }
+
+            .navbar-brand {
+               font-size: 1.25rem;
+            }
+
+            .file-drop-area {
+               padding: 2rem 1rem;
+            }
+         }
+
+         /* Tooltip styles */
+         .tooltip-container {
+            position: relative;
+            display: inline-block;
+         }
+
+         .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark-color);
+            color: #fff;
+            text-align: center;
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-lg);
+         }
+
+         .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-color) transparent transparent transparent;
+         }
+
+         .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+         }
+
+         .dark-mode .tooltip-text {
+            background-color: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+         }
+
+         .dark-mode .tooltip-text::after {
+            border-color: var(--dark-border) transparent transparent transparent;
+         }
+
+         /* Webcam button styles */
+         .webcam-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            color: var(--dark-color);
+            border: none;
+            box-shadow: var(--shadow-md);
+         }
+
+         .dark-mode .webcam-toggle {
+            background-color: rgba(0, 40, 85, 0.9);
+            color: white;
+            box-shadow: var(--shadow-md);
+         }
+
+         .webcam-toggle:hover {
+            transform: scale(1.1);
+         }
+
+         /* Tags for detected classes */
+         .detection-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 15px;
+         }
+
+         .detection-tag {
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid transparent;
+         }
+
+         .detection-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+         }
+
+         /* JSON response viewer */
+         .json-viewer {
+            background-color: rgba(240, 242, 245, 0.6);
+            color: var(--dark-color);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            white-space: pre;
+            transition: var(--transition);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--info-color);
+         }
+
+         .dark-mode .json-viewer {
+            background-color: rgba(0, 24, 85, 0.2);
+            color: #e2e8f0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+         }
+
+         /* Tab navigation */
+         .tab-navigation {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--grey-color);
+            transition: var(--transition);
+            gap: 0.5rem;
+         }
+
+         .dark-mode .tab-navigation {
+            border-bottom: 1px solid var(--dark-border);
+         }
+
+         .tab-btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--grey-dark-color);
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+            margin-bottom: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+         }
+
+         .tab-btn i {
+            opacity: 0.7;
+            transition: var(--transition);
+         }
+
+         .tab-btn:hover {
+            color: var(--primary-color);
+         }
+
+         .tab-btn:hover i {
+            opacity: 1;
+         }
+
+         .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+         }
+
+         .tab-btn.active i {
+            opacity: 1;
+         }
+
+         .tab-content {
+            display: none;
+         }
+
+         .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+         }
+
+         @keyframes fadeIn {
+            from {
+               opacity: 0;
+               transform: translateY(5px);
+            }
+            to {
+               opacity: 1;
+               transform: translateY(0);
+            }
+         }
+
+         /* Canvas controls */
+         .canvas-controls {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            z-index: 10;
+         }
+
+         .canvas-control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-color);
+            border: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+         }
+
+         .dark-mode .canvas-control-btn {
+            background-color: rgba(0, 40, 85, 0.9);
+            color: white;
+            box-shadow: var(--shadow-md);
+         }
+
+         .canvas-control-btn:hover {
+            transform: scale(1.1);
+            background-color: white;
+         }
+
+         .dark-mode .canvas-control-btn:hover {
+            background-color: var(--dark-surface);
+         }
+
+         /* Image comparison */
+         .comparison-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: none;
+            border-radius: var(--radius-md);
+         }
+
+         .comparison-slider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: white;
+            cursor: ew-resize;
+            z-index: 10;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+         }
+
+         .comparison-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            border: 2px solid var(--primary-color);
+         }
+
+         .dark-mode .comparison-slider {
+            background-color: var(--primary-color);
+         }
+
+         .dark-mode .comparison-handle {
+            background-color: var(--dark-surface);
+            color: var(--primary-light);
+            border-color: var(--primary-light);
+         }
+
+         /* Download button styling */
+         .download-btn {
+            color: var(--primary-color);
+            transition: var(--transition);
+         }
+
+         .download-btn:hover {
+            color: var(--primary-dark);
+         }
+
+         .dark-mode .download-btn:hover {
+            color: var(--info-color);
+         }
+
+         /* Form styling */
+         .form-range {
+            height: 6px;
+            border-radius: var(--radius-full);
+         }
+
+         .form-range::-webkit-slider-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+         }
+
+         .form-range::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+         }
+
+         .form-label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+         }
+
+         .dark-mode .form-label {
+            color: var(--light-color);
+         }
+
+         /* Improved font rendering */
+         * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+         }
+
+         /* Key metric styling */
+         .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+         }
+
+         .metric-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+         }
+
+         .metric-icon.primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+         }
+
+         .metric-icon.success {
+            background: linear-gradient(135deg, var(--secondary-color), #097254);
+         }
+
+         .metric-icon.warning {
+            background: linear-gradient(135deg, var(--accent-color), #e29100);
+         }
+
+         .metric-icon.danger {
+            background: linear-gradient(135deg, var(--danger-color), #9c0000);
+         }
+
+         .metric-value {
+            font-weight: 700;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+         }
+
+         .dark-mode .metric-value {
+            color: var(--light-color);
+         }
+
+         .metric-label {
+            color: var(--grey-dark-color);
+            font-size: 0.85rem;
+            margin-top: -2px;
+         }
+
+         /* Text improvements */
+         h5,
+         h6,
+         .h5,
+         .h6 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+         }
+
+         .fw-bold {
+            letter-spacing: -0.01em;
+         }
+
+         .text-muted {
+            color: var(--grey-dark-color) !important;
+         }
+
+         .dark-mode .text-muted {
+            color: rgba(255, 255, 255, 0.6) !important;
+         }
+
+         /* Section headers */
+         .section-header {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+         }
+
+         .dark-mode .section-header {
+            color: var(--info-color);
+         }
+
+         .section-header i {
+            opacity: 0.8;
+         }
+
+         /* Alerts */
+         .alert {
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            padding: 1rem 1.25rem;
+         }
+
+         .alert-info {
+            background-color: rgba(63, 142, 252, 0.1);
+            border-color: rgba(63, 142, 252, 0.2);
+            color: var(--info-color);
+         }
+
+         .dark-mode .alert-info {
+            background-color: rgba(63, 142, 252, 0.15);
+            border-color: rgba(63, 142, 252, 0.3);
+         }
+
+         /* Modal improvements */
+         .modal-header,
+         .modal-footer {
+            border-color: var(--grey-color);
+         }
+
+         .dark-mode .modal-header,
+         .dark-mode .modal-footer {
+            border-color: var(--dark-border);
+         }
+
+         .modal-title {
+            font-weight: 600;
+         }
+
+         /* Code styling */
+         pre {
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            border-left: 3px solid var(--primary-color);
+         }
+
+         .dark-mode pre {
+            background-color: rgba(0, 40, 85, 0.3);
+         }
+
+         code {
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 0.875rem;
+         }
+
+         /* Badge styling */
+         .badge {
+            padding: 0.35em 0.65em;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+         }
+
+         .badge.bg-success {
+            background-color: var(--secondary-color) !important;
+         }
+
+         .badge.bg-primary {
+            background-color: var(--primary-color) !important;
+         }
+
+         .badge.bg-warning {
+            background-color: var(--accent-color) !important;
+            color: var(--dark-color);
+         }
+
+         /* Reveal animations */
+         @keyframes revealFromBottom {
+            from {
+               opacity: 0;
+               transform: translateY(20px);
+            }
+            to {
+               opacity: 1;
+               transform: translateY(0);
+            }
+         }
+
+         .reveal-animation {
+            animation: revealFromBottom 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+         }
+
+         /* Gradient overlay */
+         .gradient-overlay {
+            position: relative;
+            overflow: hidden;
+         }
+
+         .gradient-overlay::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(3, 83, 164, 0.05) 0%, rgba(3, 83, 164, 0) 60%);
+            z-index: 0;
+            pointer-events: none;
+         }
+
+         .dark-mode .gradient-overlay::before {
+            background: linear-gradient(
+               135deg,
+               rgba(63, 142, 252, 0.05) 0%,
+               rgba(3, 83, 164, 0) 60%
+            );
+         }
+
+         /* Updated button hover effect */
+         .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+         }
+
+         /* Custom scrollbar */
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+         }
+
+         ::-webkit-scrollbar-track {
+            background: var(--grey-color);
+            border-radius: var(--radius-full);
+         }
+
+         ::-webkit-scrollbar-thumb {
+            background: var(--grey-dark-color);
+            border-radius: var(--radius-full);
+         }
+
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+         }
+
+         .dark-mode ::-webkit-scrollbar-track {
+            background: rgba(0, 40, 85, 0.3);
+         }
+
+         .dark-mode ::-webkit-scrollbar-thumb {
+            background: rgba(63, 142, 252, 0.5);
+         }
+
+         .dark-mode ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg fixed-top">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+               <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEDUlEQVRYCe1WTWwbRRR+M7P+2bXjODFpk9RJ0xZBW0GFhKAHJA6AQEgIIXHgyA0kJA5cOMCJAxI3xAFuSAghgZA4cUAqEuoPEhIIUFuJtDRNmsSJ4x/Hrndnd2d4M7vjOLFbtw3iwpNWO/Pmzffe9973ZleYnwK8iI34RSa/8T8IkBafrG8F8/FsNT8h47HHV94YunFT9e9awGtSxD/Uc0dKjtaXpvfXp7xTHCZPXq2e5S0/fDRBmYBQKsWuPPGQJy9JY8R3yDlNwcqsRi30YbmHCDG9SyuGqXEDCG1vg5NdHGI80FQ1RhBwLShw3YGZOkqcCOOWNfXGXVScBT2UH8A/FjVR6ygCzsFrA6ESCQDIMEYRFdCIIiiInBKxz5fAkkbgc473sB+8QkYgDMWuBdQMK9AQ5XDyE0+sNV4btYrM86QCIaRCzLAXvIKAMxhBGHbsI01vIdoJFjoCu4EoOOgD1/E9Sw2ckFQrjGH2R2A1gSHNxgA0BAdEOwc7qVDxCh6Hbx8Ax5gvSM5xjvpvWSJkAYZCBV/VyC0y6Bq4KaBhB79Wx1lzU+cP3YeWCUCVQx2Fs8QYiQD1dMLSxAPKjx0DBLc2MCO/Qo28h4FvRSewG7uN5XORmyHbNeCDxBLOI4Fs+BO5fztqPAqDAGN8wBm/ixk/xbx8CjOcQRGDpE2VEFf7BO4v17Y74B2o+p/gBqUULVZjHNWhHxDPDpHrqjYkTuLc+3j3KGZ6JdkBlnTpxCADJa4XN/Aa+Wjl9BuHzUvlxSfVj40tFuDEHMO5ziD5KvKtwOjQzzj6AtJ/jB8vYva/JVzZZLPJLvG/HsXKPEbD8XbCZvbgOm5hBSRdh6LxPk6+KJYGUTpYx7aKK9yVB/8D4KDtF5Dlz7DvE1j6ffkUBvcpThRu+sdh4Wg44NfzM+Ku/D3eBVl/KdmdN1jy5Uh+WC61w1MXsD0NzPYLxvgKlh3r6Kw+F6OJTlHZC3K0S4RI0lEqx6gGQm7RKQ2X3MFDY3NrNyLp5FaqvMZVi4pv/JMH/p+UfxY44wZqQUibbGPGT/Md7wPwU4Tc9FtWjQGEUBaZX0r2wOzh7AXhsxfn7s3Rby9u4Ht5uQh5/SSTfCz5Oq3eMzMDzGMSd6JaI0y2iNJl0/JDCQBKDODJRr3sWzJQBH9Ss/RpMYgfQd5MV8eLZmHAMTjlnBhHww+OX3/5dKRV4f6GnLRQkMmvFOVmcMAx60XzrfywtcTU2RwTRq5W8MZO0VFqACp4IXRs5F43Zz0b6E57I+8f++T0rS/zDH9UXSiePXlzYnY+g6UOdhKt/P3RLyLXdD/8l6Q7Ov83Wjv58/JsaQAAAABJRU5ErkJggg=="
+                  alt="Logo"
+                  class="logo"
+               />
+               <span>Waste Detection Platform</span>
+            </a>
+
+            <button
+               class="navbar-toggler"
+               type="button"
+               data-bs-toggle="collapse"
+               data-bs-target="#navbarNav"
+               aria-controls="navbarNav"
+               aria-expanded="false"
+               aria-label="Toggle navigation"
+            >
+               <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                     <a
+                        class="nav-link"
+                        href="#"
+                        data-bs-toggle="modal"
+                        data-bs-target="#infoModal"
+                     >
+                        <i class="fas fa-info-circle"></i> About
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#apiModal">
+                        <i class="fas fa-code"></i> API
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link theme-switch" href="#" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+      <div class="container">
+         <div class="row">
+            <!-- Main content -->
+            <div class="col-lg-8">
+               <div class="card mb-4 gradient-overlay">
+                  <div class="card-header">
+                     <i class="fas fa-camera-retro"></i>
+                     <h5 class="mb-0">Computer Vision Analysis</h5>
+                     <div class="d-flex gap-2 ms-auto">
+                        <button
+                           class="btn btn-sm btn-outline-primary"
+                           id="webcam-btn"
+                           title="Use Webcam"
+                        >
+                           <i class="fas fa-camera"></i>
+                        </button>
+                        <button
+                           class="btn btn-sm btn-outline-primary"
+                           id="upload-btn"
+                           title="Upload Image"
+                        >
+                           <i class="fas fa-upload"></i>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <!-- Input methods tabs -->
+                     <div class="tab-navigation">
+                        <button class="tab-btn active" data-tab="upload-tab">
+                           <i class="fas fa-upload"></i> Upload
+                        </button>
+                        <button class="tab-btn" data-tab="camera-tab">
+                           <i class="fas fa-camera"></i> Camera
+                        </button>
+                        <button class="tab-btn" data-tab="gallery-tab">
+                           <i class="fas fa-images"></i> Gallery
+                        </button>
+                     </div>
+
+                     <!-- Upload tab -->
+                     <div class="tab-content active reveal-animation" id="upload-tab">
+                        <div class="file-drop-area" id="drop-area">
+                           <div class="file-drop-inner">
+                              <i class="fas fa-cloud-upload-alt file-drop-icon pulse-animation"></i>
+                              <p class="file-msg">Drag & drop image or click to browse</p>
+                              <p class="text-muted small mt-1">Supports JPG, PNG</p>
+                           </div>
+                           <input type="file" id="image-upload" accept="image/*" />
+                        </div>
+                     </div>
+
+                     <!-- Camera tab -->
+                     <div class="tab-content" id="camera-tab">
+                        <div class="camera-container">
+                           <video id="camera-stream" autoplay></video>
+                           <div class="camera-control">
+                              <button class="btn-circular" id="capture-btn">
+                                 <i class="fas fa-camera"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+
+                     <!-- Gallery tab -->
+                     <div class="tab-content" id="gallery-tab">
+                        <div class="gallery" id="image-gallery">
+                           <!-- Gallery items will be added dynamically -->
+                           <div
+                              class="d-flex align-items-center justify-content-center"
+                              style="width: 100%; padding: 2rem"
+                           >
+                              <p class="text-muted">
+                                 No images in gallery yet. Upload or capture images to see them
+                                 here.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+
+                     <!-- Visualization settings -->
+                     <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+                        <div class="visualization-controls">
+                           <button class="btn btn-sm btn-viz active" data-viz="bounding-box">
+                              <i class="fas fa-vector-square"></i> Boxes
+                           </button>
+                           <button class="btn btn-sm btn-viz" data-viz="heatmap">
+                              <i class="fas fa-fire"></i> Heatmap
+                           </button>
+                           <button class="btn btn-sm btn-viz" data-viz="comparison">
+                              <i class="fas fa-columns"></i> Split
+                           </button>
+                        </div>
+                        <div class="d-flex align-items-center">
+                           <button
+                              class="btn btn-sm btn-outline-primary"
+                              id="download-btn"
+                              disabled
+                           >
+                              <i class="fas fa-download"></i> Save
+                           </button>
+                        </div>
+                     </div>
+
+                     <!-- Threshold controls -->
+                     <div class="row mb-3">
+                        <div class="col-6 position-relative">
+                           <label
+                              for="conf-threshold"
+                              class="form-label d-flex justify-content-between"
+                           >
+                              Confidence
+                              <span id="conf-value">0.25</span>
+                           </label>
+                           <input
+                              type="range"
+                              class="form-range"
+                              id="conf-threshold"
+                              min="0.05"
+                              max="0.95"
+                              step="0.05"
+                              value="0.25"
+                           />
+                           <div class="threshold-tooltip" id="conf-tooltip">0.25</div>
+                        </div>
+                        <div class="col-6 position-relative">
+                           <label
+                              for="iou-threshold"
+                              class="form-label d-flex justify-content-between"
+                           >
+                              IoU
+                              <span id="iou-value">0.45</span>
+                           </label>
+                           <input
+                              type="range"
+                              class="form-range"
+                              id="iou-threshold"
+                              min="0.05"
+                              max="0.95"
+                              step="0.05"
+                              value="0.45"
+                           />
+                           <div class="threshold-tooltip" id="iou-tooltip">0.45</div>
+                        </div>
+                     </div>
+
+                     <!-- Canvas container -->
+                     <div id="canvas-container">
+                        <div id="visualization-container">
+                           <!-- Default view -->
+                           <canvas id="output-canvas"></canvas>
+
+                           <!-- Bounding box overlay -->
+                           <canvas id="bbox-canvas" class="canvas-overlay"></canvas>
+
+                           <!-- Heatmap overlay -->
+                           <canvas id="heatmap-canvas" class="canvas-overlay"></canvas>
+
+                           <!-- Comparison view -->
+                           <div id="comparison-container" class="comparison-container">
+                              <canvas id="original-canvas" class="canvas-overlay"></canvas>
+                              <canvas id="detected-canvas" class="canvas-overlay"></canvas>
+                              <div class="comparison-slider" id="comparison-slider">
+                                 <div class="comparison-handle">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <!-- Canvas controls -->
+                           <div class="canvas-controls">
+                              <button class="canvas-control-btn" id="zoom-in-btn" title="Zoom In">
+                                 <i class="fas fa-search-plus"></i>
+                              </button>
+                              <button class="canvas-control-btn" id="zoom-out-btn" title="Zoom Out">
+                                 <i class="fas fa-search-minus"></i>
+                              </button>
+                              <button
+                                 class="canvas-control-btn"
+                                 id="reset-view-btn"
+                                 title="Reset View"
+                              >
+                                 <i class="fas fa-sync-alt"></i>
+                              </button>
+                           </div>
+                        </div>
+
+                        <!-- Loading indicator -->
+                        <div id="loading">
+                           <div class="spinner"></div>
+                           <span class="ms-3 fw-medium">Processing...</span>
+                        </div>
+                     </div>
+
+                     <!-- Action buttons -->
+                     <div class="d-flex justify-content-between mt-4">
+                        <button type="button" class="btn btn-outline-secondary" id="clear-btn">
+                           <i class="fas fa-trash-alt"></i> Clear
+                        </button>
+                        <button type="button" class="btn btn-primary" id="detect-btn" disabled>
+                           <i class="fas fa-search"></i> Analyze Image
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+               <!-- Detection Results -->
+               <div class="card mb-4 gradient-overlay">
+                  <div class="card-header">
+                     <i class="fas fa-chart-bar"></i>
+                     <h5 class="mb-0">Analysis Results</h5>
+                     <div class="dropdown ms-auto">
+                        <button
+                           class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                           type="button"
+                           id="resultViewDropdown"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                        >
+                           <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul
+                           class="dropdown-menu dropdown-menu-end"
+                           aria-labelledby="resultViewDropdown"
+                        >
+                           <li>
+                              <a class="dropdown-item" href="#" id="view-json-btn"
+                                 ><i class="fas fa-code me-2"></i>View JSON Response</a
+                              >
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" id="download-results-btn"
+                                 ><i class="fas fa-download me-2"></i>Download Results</a
+                              >
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" id="copy-results-btn"
+                                 ><i class="fas fa-copy me-2"></i>Copy to Clipboard</a
+                              >
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div id="results-container">
+                        <p class="text-muted">
+                           Upload an image and click "Analyze Image" to see results
+                        </p>
+                     </div>
+
+                     <!-- JSON viewer (initially hidden) -->
+                     <div id="json-viewer" class="json-viewer mt-3" style="display: none"></div>
+
+                     <!-- Detection tags -->
+                     <div class="detection-tags" id="detection-tags"></div>
+
+                     <!-- Detection summary (shown after detection) -->
+                     <div class="detection-summary" id="detection-summary" style="display: none">
+                        <div class="section-header mb-3">
+                           <i class="fas fa-chart-pie"></i> Analysis Summary
+                        </div>
+                        <div class="row">
+                           <div class="col-6">
+                              <div class="metric-item">
+                                 <div class="metric-icon primary">
+                                    <i class="fas fa-cubes"></i>
+                                 </div>
+                                 <div>
+                                    <div class="metric-value" id="total-objects">0</div>
+                                    <div class="metric-label">Total Objects</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="metric-item">
+                                 <div class="metric-icon success">
+                                    <i class="fas fa-star"></i>
+                                 </div>
+                                 <div>
+                                    <div class="metric-value" id="most-common">-</div>
+                                    <div class="metric-label">Most Common</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-6 mt-3">
+                              <div class="metric-item">
+                                 <div class="metric-icon warning">
+                                    <i class="fas fa-bullseye"></i>
+                                 </div>
+                                 <div>
+                                    <div class="metric-value" id="highest-confidence">-</div>
+                                    <div class="metric-label">High Confidence</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-6 mt-3">
+                              <div class="metric-item">
+                                 <div class="metric-icon primary">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                 </div>
+                                 <div>
+                                    <div class="metric-value" id="processing-time">-</div>
+                                    <div class="metric-label">Processing Time</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Statistics -->
+               <div class="card mb-4 gradient-overlay">
+                  <div class="card-header">
+                     <i class="fas fa-chart-line"></i>
+                     <h5 class="mb-0">Analytics</h5>
+                  </div>
+                  <div class="card-body">
+                     <div class="stats-container d-flex flex-wrap">
+                        <div class="stats-card primary flex-grow-1">
+                           <div class="value" id="detection-count">0</div>
+                           <div class="label">Objects</div>
+                        </div>
+                        <div class="stats-card success flex-grow-1">
+                           <div class="value" id="avg-confidence">0%</div>
+                           <div class="label">Accuracy</div>
+                        </div>
+                        <div class="stats-card warning flex-grow-1">
+                           <div class="value" id="inference-time">0 ms</div>
+                           <div class="label">Speed</div>
+                        </div>
+                     </div>
+
+                     <!-- Class distribution chart -->
+                     <div class="mt-4">
+                        <div class="section-header">
+                           <i class="fas fa-chart-pie"></i> Distribution
+                        </div>
+                        <div class="classes-pie-chart">
+                           <canvas id="class-distribution-chart"></canvas>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- API Info -->
+               <div class="card mb-4 gradient-overlay">
+                  <div class="card-header">
+                     <i class="fas fa-brain"></i>
+                     <h5 class="mb-0">AI Model</h5>
+                  </div>
+                  <div class="card-body">
+                     <div id="api-info">
+                        <div class="mb-3">
+                           <h6 class="section-header">
+                              <i class="fas fa-cube"></i> Detection Model
+                           </h6>
+                           <p class="mb-1 fw-medium" id="model-name">Loading...</p>
+                           <p class="text-muted small" id="model-details">
+                              Computer vision model trained on synthetic data
+                           </p>
+                        </div>
+
+                        <div class="mb-3">
+                           <h6 class="section-header">
+                              <i class="fas fa-database"></i> Training Data
+                           </h6>
+                           <p class="mb-1 fw-medium" id="dataset-size">Loading...</p>
+                           <p class="text-muted small" id="dataset-details">
+                              Istanbul drone imagery dataset
+                           </p>
+                        </div>
+
+                        <div class="mb-3">
+                           <h6 class="section-header">
+                              <i class="fas fa-tags"></i> Detection Classes
+                           </h6>
+                           <div id="class-legend" class="mt-2"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Info Modal -->
+      <div
+         class="modal fade"
+         id="infoModal"
+         tabindex="-1"
+         aria-labelledby="infoModalLabel"
+         aria-hidden="true"
+      >
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="infoModalLabel">About Istanbul Waste Detection</h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body">
+                  <h4>Advanced Computer Vision for Waste Detection</h4>
+                  <p>
+                     This platform leverages cutting-edge artificial intelligence to identify waste
+                     items in drone imagery across Istanbul's diverse urban environments.
+                  </p>
+
+                  <h5 class="mt-4">Key Capabilities</h5>
+                  <ul>
+                     <li>
+                        <strong>Multi-Environment Detection:</strong> Works across waterfront areas,
+                        parks, streets, and plazas
+                     </li>
+                     <li>
+                        <strong>Multiple Item Categories:</strong> Detects 8 common waste types with
+                        high precision
+                     </li>
+                     <li>
+                        <strong>Challenging Conditions:</strong> Functions in various lighting
+                        conditions and drone angles
+                     </li>
+                     <li>
+                        <strong>Real-time Analysis:</strong> Fast processing for immediate results
+                     </li>
+                  </ul>
+
+                  <h5 class="mt-4">Technology Stack</h5>
+                  <p>This application is powered by:</p>
+                  <ul>
+                     <li>YOLOv8 object detection architecture</li>
+                     <li>FastAPI backend system</li>
+                     <li>Modern JavaScript interface</li>
+                     <li>AirSim and Unreal Engine simulation technology</li>
+                  </ul>
+
+                  <h5 class="mt-4">How to Use</h5>
+                  <ol>
+                     <li>Upload an image or use your camera to capture a drone view</li>
+                     <li>Adjust confidence and IoU thresholds if needed</li>
+                     <li>Click "Analyze Image" to process</li>
+                     <li>View the results with your preferred visualization method</li>
+                     <li>Export or share results as needed</li>
+                  </ol>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                     Close
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- API Modal -->
+      <div
+         class="modal fade"
+         id="apiModal"
+         tabindex="-1"
+         aria-labelledby="apiModalLabel"
+         aria-hidden="true"
+      >
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="apiModalLabel">API Documentation</h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+                  ></button>
+               </div>
+               <div class="modal-body">
+                  <h4>Istanbul Waste Detection API</h4>
+                  <p>
+                     The API provides powerful endpoints for waste detection in drone imagery.
+                     Integrate this API into your own applications for custom implementations.
+                  </p>
+
+                  <h5 class="mt-4">Endpoints</h5>
+
+                  <div class="card mb-3">
+                     <div class="card-header">
+                        <span class="badge bg-success me-2">POST</span> /predict
+                     </div>
+                     <div class="card-body">
+                        <p>Detect waste objects in an uploaded image.</p>
+
+                        <h6>Parameters</h6>
+                        <ul>
+                           <li><code>file</code> - The image file (required)</li>
+                           <li>
+                              <code>conf_threshold</code> - Confidence threshold (default: 0.25)
+                           </li>
+                           <li><code>iou_threshold</code> - IoU threshold (default: 0.45)</li>
+                        </ul>
+
+                        <h6>Example Request</h6>
+                        <pre><code>curl -X POST "http://localhost:8000/predict" \
+    -F "file=@path/to/image.jpg" \
+    -F "conf_threshold=0.25" \
+    -F "iou_threshold=0.45"</code></pre>
+
+                        <h6>Example Response</h6>
+                        <pre><code>{
+    "predictions": [
+        {
+            "class_id": 0,
+            "class_name": "PlasticBottle",
+            "confidence": 0.92,
+            "bbox": [320, 240, 50, 80]
+        },
+        {
+            "class_id": 2,
+            "class_name": "PlasticBag",
+            "confidence": 0.85,
+            "bbox": [420, 350, 40, 30]
+        }
+    ],
+    "inference_time": 0.124,
+    "model_name": "synthetic_only",
+    "image_size": [1280, 720],
+    "timestamp": "2023-11-01T12:34:56"
+}</code></pre>
+                     </div>
+                  </div>
+
+                  <div class="card mb-3">
+                     <div class="card-header">
+                        <span class="badge bg-primary me-2">GET</span> /models
+                     </div>
+                     <div class="card-body">
+                        <p>List available detection models.</p>
+
+                        <h6>Example Request</h6>
+                        <pre><code>curl -X GET "http://localhost:8000/models"</code></pre>
+                     </div>
+                  </div>
+
+                  <div class="card mb-3">
+                     <div class="card-header">
+                        <span class="badge bg-primary me-2">GET</span> /dataset
+                     </div>
+                     <div class="card-body">
+                        <p>Get dataset statistics.</p>
+
+                        <h6>Example Request</h6>
+                        <pre><code>curl -X GET "http://localhost:8000/dataset"</code></pre>
+                     </div>
+                  </div>
+
+                  <h5 class="mt-4">Python Integration Example</h5>
+                  <pre><code>import requests
+
+# API endpoint
+api_url = "http://localhost:8000"
+
+# Detect waste in an image
+def detect_waste(image_path, conf_threshold=0.25, iou_threshold=0.45):
+    with open(image_path, 'rb') as f:
+        files = {'file': f}
+        params = {
+            'conf_threshold': conf_threshold,
+            'iou_threshold': iou_threshold
+        }
+        response = requests.post(f"{api_url}/predict", files=files, params=params)
+        return response.json()
+
+# Example usage
+results = detect_waste("drone_image.jpg")
+for detection in results['predictions']:
+    print(f"{detection['class_name']}: {detection['confidence']:.2f}")</code></pre>
+
+                  <h5 class="mt-4">JavaScript Integration Example</h5>
+                  <pre><code>// Detect waste in an image
+async function detectWaste(imageFile, confThreshold = 0.25, iouThreshold = 0.45) {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    const response = await fetch(
+        `http://localhost:8000/predict?conf_threshold=${confThreshold}&iou_threshold=${iouThreshold}`,
+        {
+            method: 'POST',
+            body: formData
+        }
+    );
+
+    return await response.json();
+}
+
+// Example usage
+const fileInput = document.getElementById('image-upload');
+const file = fileInput.files[0];
+
+detectWaste(file)
+    .then(result => {
+        console.log(`Detected ${result.predictions.length} waste objects`);
+        result.predictions.forEach(detection => {
+            console.log(`${detection.class_name}: ${(detection.confidence * 100).toFixed(1)}%`);
+        });
+    });</code></pre>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                     Close
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         // API endpoint
+         const API_URL = window.location.origin;
+
+         // Class colors for visualization
+         const CLASS_COLORS = [
+            "#3366cc",
+            "#dc3912",
+            "#ff9900",
+            "#109618",
+            "#990099",
+            "#0099c6",
+            "#dd4477",
+            "#66aa00",
+            "#b82e2e",
+            "#316395",
+         ];
+
+         // DOM elements
+         const uploadForm = document.getElementById("upload-form");
+         const imageUpload = document.getElementById("image-upload");
+         const dropArea = document.getElementById("drop-area");
+         const confThreshold = document.getElementById("conf-threshold");
+         const iouThreshold = document.getElementById("iou-threshold");
+         const confValue = document.getElementById("conf-value");
+         const iouValue = document.getElementById("iou-value");
+         const confTooltip = document.getElementById("conf-tooltip");
+         const iouTooltip = document.getElementById("iou-tooltip");
+         const outputCanvas = document.getElementById("output-canvas");
+         const bboxCanvas = document.getElementById("bbox-canvas");
+         const heatmapCanvas = document.getElementById("heatmap-canvas");
+         const originalCanvas = document.getElementById("original-canvas");
+         const detectedCanvas = document.getElementById("detected-canvas");
+         const comparisonContainer = document.getElementById("comparison-container");
+         const comparisonSlider = document.getElementById("comparison-slider");
+         const resultsContainer = document.getElementById("results-container");
+         const detectionTags = document.getElementById("detection-tags");
+         const classLegend = document.getElementById("class-legend");
+         const jsonViewer = document.getElementById("json-viewer");
+         const detectionSummary = document.getElementById("detection-summary");
+         const totalObjects = document.getElementById("total-objects");
+         const mostCommon = document.getElementById("most-common");
+         const highestConfidence = document.getElementById("highest-confidence");
+         const processingTime = document.getElementById("processing-time");
+         const detectionCount = document.getElementById("detection-count");
+         const avgConfidence = document.getElementById("avg-confidence");
+         const inferenceTime = document.getElementById("inference-time");
+         const modelName = document.getElementById("model-name");
+         const modelDetails = document.getElementById("model-details");
+         const datasetSize = document.getElementById("dataset-size");
+         const datasetDetails = document.getElementById("dataset-details");
+         const loading = document.getElementById("loading");
+         const detectBtn = document.getElementById("detect-btn");
+         const clearBtn = document.getElementById("clear-btn");
+         const downloadBtn = document.getElementById("download-btn");
+         const viewJsonBtn = document.getElementById("view-json-btn");
+         const downloadResultsBtn = document.getElementById("download-results-btn");
+         const copyResultsBtn = document.getElementById("copy-results-btn");
+         const tabButtons = document.querySelectorAll(".tab-btn");
+         const tabContents = document.querySelectorAll(".tab-content");
+         const vizButtons = document.querySelectorAll(".btn-viz");
+         const webcamBtn = document.getElementById("webcam-btn");
+         const uploadBtn = document.getElementById("upload-btn");
+         const cameraContainer = document.querySelector(".camera-container");
+         const cameraStream = document.getElementById("camera-stream");
+         const captureBtn = document.getElementById("capture-btn");
+         const imageGallery = document.getElementById("image-gallery");
+         const zoomInBtn = document.getElementById("zoom-in-btn");
+         const zoomOutBtn = document.getElementById("zoom-out-btn");
+         const resetViewBtn = document.getElementById("reset-view-btn");
+         const themeToggle = document.getElementById("theme-toggle");
+
+         // Chart instance
+         let classDistributionChart = null;
+
+         // Current image and detection results
+         let currentImage = null;
+         let currentResults = null;
+         let currentVizMode = "bounding-box";
+         let zoomLevel = 1;
+         let panOffset = { x: 0, y: 0 };
+         let isDarkMode = false;
+         let gallery = [];
+         let isComparisonDragging = false;
+         let comparisonPosition = 0.5;
+
+         // Initialize tooltip state
+         let confTooltipVisible = false;
+         let iouTooltipVisible = false;
+
+         // Check if local storage has dark mode preference
+         if (localStorage.getItem("darkMode") === "true") {
+            enableDarkMode();
+         }
+
+         // Initialize canvas contexts
+         const ctx = outputCanvas.getContext("2d");
+         const bboxCtx = bboxCanvas.getContext("2d");
+         const heatmapCtx = heatmapCanvas.getContext("2d");
+         const originalCtx = originalCanvas.getContext("2d");
+         const detectedCtx = detectedCanvas.getContext("2d");
+
+         // Event Listeners
+         // Tab navigation
+         tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+               const tabId = button.dataset.tab;
+
+               // Update active button
+               tabButtons.forEach((btn) => btn.classList.remove("active"));
+               button.classList.add("active");
+
+               // Show selected tab content
+               tabContents.forEach((content) => content.classList.remove("active"));
+               document.getElementById(tabId).classList.add("active");
+
+               // If camera tab, initialize webcam
+               if (tabId === "camera-tab") {
+                  initializeWebcam();
+               } else if (tabId === "gallery-tab") {
+                  updateGallery();
+               }
+            });
+         });
+
+         // Visualization mode buttons
+         vizButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+               const vizMode = button.dataset.viz;
+
+               // Update active button
+               vizButtons.forEach((btn) => btn.classList.remove("active"));
+               button.classList.add("active");
+
+               // Set visualization mode
+               currentVizMode = vizMode;
+
+               // Update visualization
+               if (currentImage && currentResults) {
+                  updateVisualization();
+               }
+            });
+         });
+
+         // Theme toggle
+         themeToggle.addEventListener("click", () => {
+            if (isDarkMode) {
+               disableDarkMode();
+            } else {
+               enableDarkMode();
+            }
+         });
+
+         // Webcam button
+         webcamBtn.addEventListener("click", () => {
+            // Switch to camera tab
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            tabContents.forEach((content) => content.classList.remove("active"));
+
+            const cameraTabBtn = document.querySelector('[data-tab="camera-tab"]');
+            const cameraTab = document.getElementById("camera-tab");
+
+            cameraTabBtn.classList.add("active");
+            cameraTab.classList.add("active");
+
+            initializeWebcam();
+         });
+
+         // Upload button
+         uploadBtn.addEventListener("click", () => {
+            // Switch to upload tab
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            tabContents.forEach((content) => content.classList.remove("active"));
+
+            const uploadTabBtn = document.querySelector('[data-tab="upload-tab"]');
+            const uploadTab = document.getElementById("upload-tab");
+
+            uploadTabBtn.classList.add("active");
+            uploadTab.classList.add("active");
+         });
+
+         // Capture button
+         captureBtn.addEventListener("click", () => {
+            captureImage();
+         });
+
+         // File upload and drop area
+         imageUpload.addEventListener("change", (e) => {
+            handleFileSelect(e);
+         });
+
+         dropArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropArea.classList.add("is-active");
+         });
+
+         dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("is-active");
+         });
+
+         dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropArea.classList.remove("is-active");
+
+            if (e.dataTransfer.files.length) {
+               handleFile(e.dataTransfer.files[0]);
+            }
+         });
+
+         // Confidence threshold
+         confThreshold.addEventListener("input", () => {
+            confValue.textContent = confThreshold.value;
+            confTooltip.textContent = confThreshold.value;
+
+            // Show tooltip
+            confTooltip.classList.add("visible");
+            confTooltipVisible = true;
+
+            // Hide tooltip after delay
+            clearTimeout(confTooltipVisible);
+            confTooltipVisible = setTimeout(() => {
+               confTooltip.classList.remove("visible");
+            }, 1000);
+         });
+
+         // IoU threshold
+         iouThreshold.addEventListener("input", () => {
+            iouValue.textContent = iouThreshold.value;
+            iouTooltip.textContent = iouThreshold.value;
+
+            // Show tooltip
+            iouTooltip.classList.add("visible");
+            iouTooltipVisible = true;
+
+            // Hide tooltip after delay
+            clearTimeout(iouTooltipVisible);
+            iouTooltipVisible = setTimeout(() => {
+               iouTooltip.classList.remove("visible");
+            }, 1000);
+         });
+
+         // Detect button
+         detectBtn.addEventListener("click", () => {
+            detectWaste();
+         });
+
+         // Clear button
+         clearBtn.addEventListener("click", () => {
+            clearResults();
+         });
+
+         // Download button
+         downloadBtn.addEventListener("click", () => {
+            downloadImage();
+         });
+
+         // View JSON button
+         viewJsonBtn.addEventListener("click", () => {
+            toggleJsonView();
+         });
+
+         // Download results button
+         downloadResultsBtn.addEventListener("click", () => {
+            downloadResults();
+         });
+
+         // Copy results button
+         copyResultsBtn.addEventListener("click", () => {
+            copyResults();
+         });
+
+         // Zoom controls
+         zoomInBtn.addEventListener("click", () => {
+            zoomLevel *= 1.2;
+            updateVisualization();
+         });
+
+         zoomOutBtn.addEventListener("click", () => {
+            zoomLevel = Math.max(1, zoomLevel / 1.2);
+            updateVisualization();
+         });
+
+         resetViewBtn.addEventListener("click", () => {
+            zoomLevel = 1;
+            panOffset = { x: 0, y: 0 };
+            updateVisualization();
+         });
+
+         // Comparison slider events
+         comparisonSlider.addEventListener("mousedown", (e) => {
+            isComparisonDragging = true;
+         });
+
+         document.addEventListener("mousemove", (e) => {
+            if (isComparisonDragging && currentVizMode === "comparison") {
+               const rect = comparisonContainer.getBoundingClientRect();
+               comparisonPosition = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+               updateComparisonView();
+            }
+         });
+
+         document.addEventListener("mouseup", () => {
+            isComparisonDragging = false;
+         });
+
+         // Functions
+         function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            isDarkMode = true;
+            localStorage.setItem("darkMode", "true");
+
+            // Update chart if exists
+            updateChart();
+         }
+
+         function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            isDarkMode = false;
+            localStorage.setItem("darkMode", "false");
+
+            // Update chart if exists
+            updateChart();
+         }
+
+         function updateChart() {
+            if (classDistributionChart) {
+               classDistributionChart.options.plugins.legend.labels.color = isDarkMode
+                  ? "#f9fafb"
+                  : "#1f2937";
+               classDistributionChart.update();
+            }
+         }
+
+         function handleFileSelect(e) {
+            if (e.target.files.length) {
+               handleFile(e.target.files[0]);
+            }
+         }
+
+         function handleFile(file) {
+            if (!file.type.match("image.*")) {
+               alert("Please select an image file.");
+               return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+               const img = new Image();
+               img.onload = () => {
+                  // Store current image
+                  currentImage = img;
+
+                  // Reset results
+                  currentResults = null;
+
+                  // Reset view
+                  zoomLevel = 1;
+                  panOffset = { x: 0, y: 0 };
+
+                  // Update canvas
+                  updateVisualization();
+
+                  // Enable detect button
+                  detectBtn.disabled = false;
+
+                  // Add to gallery
+                  addToGallery(img);
+               };
+               img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+         }
+
+         function initializeWebcam() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+               navigator.mediaDevices
+                  .getUserMedia({ video: true })
+                  .then((stream) => {
+                     cameraStream.srcObject = stream;
+                     cameraContainer.style.display = "block";
+                  })
+                  .catch((error) => {
+                     console.error("Webcam error:", error);
+                     alert(
+                        "Could not access webcam. Please make sure you have granted permission."
+                     );
+                  });
+            } else {
+               alert("Your browser does not support webcam access.");
+            }
+         }
+
+         function captureImage() {
+            // Create canvas to capture image
+            const captureCanvas = document.createElement("canvas");
+            captureCanvas.width = cameraStream.videoWidth;
+            captureCanvas.height = cameraStream.videoHeight;
+            const ctx = captureCanvas.getContext("2d");
+
+            // Draw current video frame to canvas
+            ctx.drawImage(cameraStream, 0, 0, captureCanvas.width, captureCanvas.height);
+
+            // Convert to image
+            const img = new Image();
+            img.src = captureCanvas.toDataURL("image/png");
+
+            img.onload = () => {
+               // Store current image
+               currentImage = img;
+
+               // Reset results
+               currentResults = null;
+
+               // Reset view
+               zoomLevel = 1;
+               panOffset = { x: 0, y: 0 };
+
+               // Update canvas
+               updateVisualization();
+
+               // Enable detect button
+               detectBtn.disabled = false;
+
+               // Add to gallery
+               addToGallery(img);
+
+               // Switch to upload tab to show result
+               tabButtons.forEach((btn) => btn.classList.remove("active"));
+               tabContents.forEach((content) => content.classList.remove("active"));
+
+               const uploadTabBtn = document.querySelector('[data-tab="upload-tab"]');
+               const uploadTab = document.getElementById("upload-tab");
+
+               uploadTabBtn.classList.add("active");
+               uploadTab.classList.add("active");
+            };
+         }
+
+         function addToGallery(img) {
+            // Create object with image and timestamp
+            const galleryItem = {
+               img: img,
+               timestamp: new Date(),
+               results: null,
+            };
+
+            // Add to gallery array (limit to 10 images)
+            gallery.unshift(galleryItem);
+            if (gallery.length > 10) {
+               gallery.pop();
+            }
+
+            // Update gallery display
+            updateGallery();
+         }
+
+         function updateGallery() {
+            // Clear gallery
+            imageGallery.innerHTML = "";
+
+            if (gallery.length === 0) {
+               imageGallery.innerHTML =
+                  '<div class="d-flex align-items-center justify-content-center" style="width: 100%; padding: 2rem;"><p class="text-muted">No images in gallery yet. Upload or capture images to see them here.</p></div>';
+               return;
+            }
+
+            // Add images to gallery
+            gallery.forEach((item, index) => {
+               const galleryItem = document.createElement("div");
+               galleryItem.className = "gallery-item";
+               if (currentImage === item.img) {
+                  galleryItem.classList.add("active");
+               }
+
+               const img = document.createElement("img");
+               img.src = item.img.src;
+               galleryItem.appendChild(img);
+
+               // Add badge if results available
+               if (item.results) {
+                  const badge = document.createElement("span");
+                  badge.className = "badge";
+                  badge.textContent = item.results.predictions.length;
+                  galleryItem.appendChild(badge);
+               }
+
+               // Add click event
+               galleryItem.addEventListener("click", () => {
+                  // Set as current image
+                  currentImage = item.img;
+                  currentResults = item.results;
+
+                  // Reset view
+                  zoomLevel = 1;
+                  panOffset = { x: 0, y: 0 };
+
+                  // Update visualization
+                  updateVisualization();
+
+                  // Update results display
+                  if (currentResults) {
+                     displayResults(currentResults);
+                  } else {
+                     clearResultsDisplay();
+                  }
+
+                  // Enable detect button
+                  detectBtn.disabled = false;
+
+                  // Update gallery selection
+                  document.querySelectorAll(".gallery-item").forEach((item) => {
+                     item.classList.remove("active");
+                  });
+                  galleryItem.classList.add("active");
+
+                  // Switch to upload tab to show image
+                  tabButtons.forEach((btn) => btn.classList.remove("active"));
+                  tabContents.forEach((content) => content.classList.remove("active"));
+
+                  const uploadTabBtn = document.querySelector('[data-tab="upload-tab"]');
+                  const uploadTab = document.getElementById("upload-tab");
+
+                  uploadTabBtn.classList.add("active");
+                  uploadTab.classList.add("active");
+               });
+
+               imageGallery.appendChild(galleryItem);
+            });
+         }
+
+         function updateVisualization() {
+            if (!currentImage) return;
+
+            // Reset all canvases to match image dimensions
+            const canvases = [
+               outputCanvas,
+               bboxCanvas,
+               heatmapCanvas,
+               originalCanvas,
+               detectedCanvas,
+            ];
+            canvases.forEach((canvas) => {
+               canvas.width = currentImage.width;
+               canvas.height = currentImage.height;
+            });
+
+            // Hide all overlays by default
+            bboxCanvas.style.display = "none";
+            heatmapCanvas.style.display = "none";
+            comparisonContainer.style.display = "none";
+
+            // Apply zoom level and render based on visualization mode
+            if (currentVizMode === "bounding-box") {
+               // Clear canvas and draw image with zoom
+               ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
+
+               // Draw image with current zoom and pan
+               ctx.save();
+               ctx.translate(panOffset.x, panOffset.y);
+               ctx.scale(zoomLevel, zoomLevel);
+               ctx.drawImage(
+                  currentImage,
+                  -panOffset.x / zoomLevel,
+                  -panOffset.y / zoomLevel,
+                  outputCanvas.width / zoomLevel,
+                  outputCanvas.height / zoomLevel
+               );
+
+               // Draw bounding boxes if we have results
+               if (currentResults) {
+                  drawBoundingBoxes(ctx);
+               }
+
+               ctx.restore();
+            } else if (currentVizMode === "heatmap") {
+               // Display base image
+               ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
+               ctx.drawImage(currentImage, 0, 0);
+
+               // Create heatmap if we have results
+               if (currentResults) {
+                  // Show heatmap overlay
+                  heatmapCanvas.style.display = "block";
+
+                  // Clear heatmap canvas
+                  heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+
+                  // Create heatmap
+                  createHeatmap(heatmapCtx);
+               }
+            } else if (currentVizMode === "comparison") {
+               // Initialize comparison view
+               comparisonContainer.style.display = "block";
+
+               // Set initial position if not set
+               if (comparisonPosition === 0) {
+                  comparisonPosition = 0.5;
+               }
+
+               // Draw original image on both canvases
+               originalCtx.clearRect(0, 0, originalCanvas.width, originalCanvas.height);
+               originalCtx.drawImage(currentImage, 0, 0);
+
+               detectedCtx.clearRect(0, 0, detectedCanvas.width, detectedCanvas.height);
+               detectedCtx.drawImage(currentImage, 0, 0);
+
+               // Draw bounding boxes on the detected canvas
+               if (currentResults) {
+                  drawBoundingBoxes(detectedCtx);
+               }
+
+               // Update comparison view
+               updateComparisonView();
+            }
+
+            // Enable download button
+            downloadBtn.disabled = false;
+         }
+
+         function updateComparisonView() {
+            if (!comparisonContainer.style.width) {
+               comparisonContainer.style.width = outputCanvas.width + "px";
+               comparisonContainer.style.height = outputCanvas.height + "px";
+            }
+
+            // Position slider
+            const sliderPosition = comparisonPosition * comparisonContainer.offsetWidth;
+            comparisonSlider.style.left = sliderPosition + "px";
+
+            // Set clip paths for the canvases
+            originalCanvas.style.clipPath = `inset(0 ${100 - comparisonPosition * 100}% 0 0)`;
+            detectedCanvas.style.clipPath = `inset(0 0 0 ${comparisonPosition * 100}%)`;
+         }
+
+         function drawBoundingBoxes(context) {
+            currentResults.predictions.forEach((detection) => {
+               const [x, y, width, height] = detection.bbox;
+               const className = detection.class_name;
+               const confidence = detection.confidence;
+               const color = CLASS_COLORS[detection.class_id % CLASS_COLORS.length];
+
+               // Draw bounding box
+               context.strokeStyle = color;
+               context.lineWidth = 3;
+               context.strokeRect(x - width / 2, y - height / 2, width, height);
+
+               // Draw label background
+               context.fillStyle = color;
+               const label = `${className} ${(confidence * 100).toFixed(1)}%`;
+               const textWidth = context.measureText(label).width;
+               context.fillRect(x - width / 2, y - height / 2 - 20, textWidth + 10, 20);
+
+               // Draw label text
+               context.fillStyle = "white";
+               context.font = "16px Inter";
+               context.fillText(label, x - width / 2 + 5, y - height / 2 - 5);
+            });
+         }
+
+         function createHeatmap(context) {
+            if (!currentResults || currentResults.predictions.length === 0) return;
+
+            // Create a heatmap based on object confidence and size
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+            // Set blend mode
+            context.globalCompositeOperation = "multiply";
+
+            // Draw heatmap for each detection
+            currentResults.predictions.forEach((detection) => {
+               const [x, y, width, height] = detection.bbox;
+               const confidence = detection.confidence;
+               const centerX = x;
+               const centerY = y;
+
+               // Create radial gradient
+               const radius = Math.max(width, height) * 0.75;
+               const gradient = context.createRadialGradient(
+                  centerX,
+                  centerY,
+                  0,
+                  centerX,
+                  centerY,
+                  radius
+               );
+
+               // Color based on class
+               const color = CLASS_COLORS[detection.class_id % CLASS_COLORS.length];
+
+               // Add color stops
+               gradient.addColorStop(0, hexToRgba(color, confidence * 0.7));
+               gradient.addColorStop(0.7, hexToRgba(color, confidence * 0.3));
+               gradient.addColorStop(1, hexToRgba(color, 0));
+
+               // Draw gradient
+               context.fillStyle = gradient;
+               context.beginPath();
+               context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+               context.fill();
+            });
+
+            // Reset blend mode
+            context.globalCompositeOperation = "source-over";
+
+            // Set overall opacity
+            context.globalAlpha = 0.7;
+         }
+
+         function hexToRgba(hex, alpha) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+         }
+
+         async function detectWaste() {
+            if (!currentImage) {
+               alert("Please select or capture an image first");
+               return;
+            }
+
+            // Show loading indicator
+            loading.style.display = "block";
+
+            // Clear previous results
+            clearResultsDisplay();
+
+            try {
+               // Convert image to blob
+               const blob = await imageToBlob(currentImage);
+
+               // Create form data
+               const formData = new FormData();
+               formData.append("file", blob, "image.jpg");
+
+               // Make API request
+               const response = await fetch(
+                  `${API_URL}/predict?conf_threshold=${confThreshold.value}&iou_threshold=${iouThreshold.value}`,
+                  {
+                     method: "POST",
+                     body: formData,
+                  }
+               );
+
+               // Parse response
+               const result = await response.json();
+
+               // Store results
+               currentResults = result;
+
+               // Update current gallery item if exists
+               const galleryIndex = gallery.findIndex((item) => item.img === currentImage);
+               if (galleryIndex !== -1) {
+                  gallery[galleryIndex].results = result;
+                  updateGallery();
+               }
+
+               // Display results
+               displayResults(result);
+
+               // Update visualization
+               updateVisualization();
+            } catch (error) {
+               console.error("Error detecting waste:", error);
+               alert("Error analyzing image. Please try again.");
+            } finally {
+               // Hide loading indicator
+               loading.style.display = "none";
+            }
+         }
+
+         function displayResults(result) {
+            // Clear previous results
+            clearResultsDisplay();
+
+            // Show detection summary
+            detectionSummary.style.display = "block";
+
+            if (result.predictions.length > 0) {
+               // Populate results container
+               resultsContainer.innerHTML = "";
+
+               result.predictions.forEach((detection) => {
+                  const color = CLASS_COLORS[detection.class_id % CLASS_COLORS.length];
+
+                  // Create result item
+                  const resultItem = document.createElement("div");
+                  resultItem.className = "result-item";
+                  resultItem.style.borderLeftColor = color;
+
+                  // Create color indicator
+                  const colorIndicator = document.createElement("div");
+                  colorIndicator.className = "class-color";
+                  colorIndicator.style.backgroundColor = color;
+
+                  // Create text content
+                  const textContent = document.createElement("div");
+                  textContent.className = "flex-grow-1";
+
+                  const className = document.createElement("div");
+                  className.className = "fw-bold";
+                  className.textContent = detection.class_name;
+
+                  // Create confidence progress
+                  const confidence = Math.round(detection.confidence * 100);
+                  const progressRadial = document.createElement("div");
+                  progressRadial.className = "progress-radial";
+
+                  const progressFill = document.createElement("div");
+                  progressFill.className = "progress";
+
+                  const progressFillInner = document.createElement("div");
+                  progressFillInner.className = "progress-fill";
+                  progressFillInner.style.backgroundColor = color;
+                  // Rotate to show percentage
+                  const rotation = (confidence / 100) * 360;
+                  progressFillInner.style.transform = `rotate(${Math.min(180, rotation)}deg)`;
+
+                  const progressOverlay = document.createElement("div");
+                  progressOverlay.className = "overlay";
+                  progressOverlay.textContent = confidence + "%";
+
+                  // Assemble confidence progress
+                  progressFill.appendChild(progressFillInner);
+                  progressRadial.appendChild(progressFill);
+
+                  // Add second half of circle if needed
+                  if (confidence > 50) {
+                     const progressFill2 = document.createElement("div");
+                     progressFill2.className = "progress";
+                     progressFill2.style.transform = "rotate(180deg)";
+
+                     const progressFillInner2 = document.createElement("div");
+                     progressFillInner2.className = "progress-fill";
+                     progressFillInner2.style.backgroundColor = color;
+                     progressFillInner2.style.transform = `rotate(${Math.max(
+                        0,
+                        rotation - 180
+                     )}deg)`;
+
+                     progressFill2.appendChild(progressFillInner2);
+                     progressRadial.appendChild(progressFill2);
+                  }
+
+                  progressRadial.appendChild(progressOverlay);
+
+                  // Assemble result item
+                  textContent.appendChild(className);
+                  resultItem.appendChild(colorIndicator);
+                  resultItem.appendChild(textContent);
+                  resultItem.appendChild(progressRadial);
+
+                  resultsContainer.appendChild(resultItem);
+               });
+            } else {
+               // No detections
+               resultsContainer.innerHTML =
+                  '<div class="alert alert-info">No waste detected in this image.</div>';
+            }
+
+            // Update detection tags
+            updateDetectionTags(result);
+
+            // Update stats
+            updateStats(result);
+
+            // Update charts
+            updateCharts(result);
+
+            // Update JSON viewer
+            jsonViewer.textContent = JSON.stringify(result, null, 2);
+         }
+
+         function updateDetectionTags(result) {
+            // Clear previous tags
+            detectionTags.innerHTML = "";
+
+            if (!result.predictions.length) return;
+
+            // Count occurrences of each class
+            const classCounts = {};
+
+            result.predictions.forEach((detection) => {
+               const className = detection.class_name;
+               classCounts[className] = (classCounts[className] || 0) + 1;
+            });
+
+            // Create tags for each class
+            Object.entries(classCounts).forEach(([className, count]) => {
+               const classId = result.predictions.find((p) => p.class_name === className).class_id;
+               const color = CLASS_COLORS[classId % CLASS_COLORS.length];
+
+               const tag = document.createElement("div");
+               tag.className = "detection-tag";
+               tag.style.backgroundColor = hexToRgba(color, 0.1);
+               tag.style.color = color;
+               tag.style.borderColor = color;
+
+               const countSpan = document.createElement("span");
+               countSpan.className = "badge bg-light text-dark";
+               countSpan.textContent = count;
+
+               tag.innerHTML = `<i class="fas fa-tag"></i> ${className}`;
+               tag.appendChild(countSpan);
+
+               detectionTags.appendChild(tag);
+            });
+         }
+
+         function updateStats(result) {
+            // Update stats cards
+            const numDetections = result.predictions.length;
+            detectionCount.textContent = numDetections;
+
+            // Calculate average confidence
+            let totalConfidence = 0;
+            if (numDetections > 0) {
+               totalConfidence = result.predictions.reduce((acc, curr) => acc + curr.confidence, 0);
+               avgConfidence.textContent =
+                  Math.round((totalConfidence / numDetections) * 100) + "%";
+            } else {
+               avgConfidence.textContent = "0%";
+            }
+
+            // Update inference time
+            inferenceTime.textContent = Math.round(result.inference_time * 1000) + " ms";
+
+            // Update detection summary
+            totalObjects.textContent = numDetections;
+            processingTime.textContent = Math.round(result.inference_time * 1000) + " ms";
+
+            // Find most common class
+            if (numDetections > 0) {
+               const classCounts = {};
+               result.predictions.forEach((detection) => {
+                  classCounts[detection.class_name] = (classCounts[detection.class_name] || 0) + 1;
+               });
+
+               const mostCommonClass = Object.entries(classCounts).sort((a, b) => b[1] - a[1])[0];
+               mostCommon.textContent = `${mostCommonClass[0]} (${mostCommonClass[1]})`;
+
+               // Find highest confidence detection
+               const highestConfidenceDetection = result.predictions.sort(
+                  (a, b) => b.confidence - a.confidence
+               )[0];
+               highestConfidence.textContent = `${
+                  highestConfidenceDetection.class_name
+               } (${Math.round(highestConfidenceDetection.confidence * 100)}%)`;
+            } else {
+               mostCommon.textContent = "-";
+               highestConfidence.textContent = "-";
+            }
+         }
+
+         function updateCharts(result) {
+            // Create or update class distribution chart
+            if (result.predictions.length > 0) {
+               // Count occurrences of each class
+               const classCounts = {};
+               const classColors = {};
+
+               result.predictions.forEach((detection) => {
+                  const className = detection.class_name;
+                  classCounts[className] = (classCounts[className] || 0) + 1;
+                  classColors[className] = CLASS_COLORS[detection.class_id % CLASS_COLORS.length];
+               });
+
+               // Prepare chart data
+               const labels = Object.keys(classCounts);
+               const data = Object.values(classCounts);
+               const colors = labels.map((label) => classColors[label]);
+
+               // Get chart canvas
+               const chartCanvas = document.getElementById("class-distribution-chart");
+
+               // Destroy previous chart if exists
+               if (classDistributionChart) {
+                  classDistributionChart.destroy();
+               }
+
+               // Create chart
+               classDistributionChart = new Chart(chartCanvas, {
+                  type: "pie",
+                  data: {
+                     labels: labels,
+                     datasets: [
+                        {
+                           label: "Class Distribution",
+                           data: data,
+                           backgroundColor: colors,
+                           borderColor: isDarkMode ? "#1f2937" : "white",
+                           borderWidth: 1,
+                        },
+                     ],
+                  },
+                  options: {
+                     responsive: true,
+                     maintainAspectRatio: false,
+                     plugins: {
+                        legend: {
+                           position: "right",
+                           labels: {
+                              color: isDarkMode ? "#f9fafb" : "#1f2937",
+                              font: {
+                                 size: 11,
+                                 family: "'Inter', sans-serif",
+                              },
+                              boxWidth: 15,
+                           },
+                        },
+                        tooltip: {
+                           callbacks: {
+                              label: function (context) {
+                                 const label = context.label || "";
+                                 const value = context.raw || 0;
+                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                 const percentage = Math.round((value / total) * 100);
+                                 return `${label}: ${value} (${percentage}%)`;
+                              },
+                           },
+                        },
+                     },
+                  },
+               });
+            } else if (classDistributionChart) {
+               // No detections, clear chart
+               classDistributionChart.destroy();
+               classDistributionChart = null;
+            }
+         }
+
+         function clearResults() {
+            // Reset current image and results
+            currentImage = null;
+            currentResults = null;
+
+            // Reset view
+            zoomLevel = 1;
+            panOffset = { x: 0, y: 0 };
+
+            // Clear canvas
+            ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
+            bboxCtx.clearRect(0, 0, bboxCanvas.width, bboxCanvas.height);
+            heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+            originalCtx.clearRect(0, 0, originalCanvas.width, originalCanvas.height);
+            detectedCtx.clearRect(0, 0, detectedCanvas.width, detectedCanvas.height);
+
+            // Clear results display
+            clearResultsDisplay();
+
+            // Disable buttons
+            detectBtn.disabled = true;
+            downloadBtn.disabled = true;
+         }
+
+         function clearResultsDisplay() {
+            // Clear results container
+            resultsContainer.innerHTML =
+               '<p class="text-muted">Upload an image and click "Analyze Image" to see results</p>';
+
+            // Clear detection tags
+            detectionTags.innerHTML = "";
+
+            // Hide detection summary
+            detectionSummary.style.display = "none";
+
+            // Clear JSON viewer
+            jsonViewer.textContent = "";
+            jsonViewer.style.display = "none";
+
+            // Reset stats
+            detectionCount.textContent = "0";
+            avgConfidence.textContent = "0%";
+            inferenceTime.textContent = "0 ms";
+
+            // Clear chart
+            if (classDistributionChart) {
+               classDistributionChart.destroy();
+               classDistributionChart = null;
+            }
+         }
+
+         function toggleJsonView() {
+            if (jsonViewer.style.display === "none" || !jsonViewer.style.display) {
+               jsonViewer.style.display = "block";
+               resultsContainer.style.display = "none";
+               detectionTags.style.display = "none";
+               detectionSummary.style.display = "none";
+            } else {
+               jsonViewer.style.display = "none";
+               resultsContainer.style.display = "block";
+               detectionTags.style.display = "flex";
+               if (currentResults && currentResults.predictions.length > 0) {
+                  detectionSummary.style.display = "block";
+               }
+            }
+         }
+
+         function downloadImage() {
+            if (!currentImage) return;
+
+            // Create a temporary canvas to draw the current visualization
+            const tempCanvas = document.createElement("canvas");
+            tempCanvas.width = outputCanvas.width;
+            tempCanvas.height = outputCanvas.height;
+            const tempCtx = tempCanvas.getContext("2d");
+
+            // Draw image
+            tempCtx.drawImage(currentImage, 0, 0);
+
+            // Draw bounding boxes if we have results and not in heatmap mode
+            if (currentResults && currentVizMode !== "heatmap") {
+               drawBoundingBoxes(tempCtx);
+            }
+
+            // Draw heatmap if in heatmap mode
+            if (currentResults && currentVizMode === "heatmap") {
+               createHeatmap(tempCtx);
+            }
+
+            // Create download link
+            const link = document.createElement("a");
+            link.download = "waste-detection.jpg";
+            link.href = tempCanvas.toDataURL("image/jpeg", 0.9);
+
+            // Trigger download
+            link.click();
+         }
+
+         function downloadResults() {
+            if (!currentResults) return;
+
+            // Convert results to a blob
+            const resultsBlob = new Blob([JSON.stringify(currentResults, null, 2)], {
+               type: "application/json",
+            });
+
+            // Create download link
+            const link = document.createElement("a");
+            link.download = "detection-results.json";
+            link.href = URL.createObjectURL(resultsBlob);
+
+            // Trigger download
+            link.click();
+
+            // Clean up
+            URL.revokeObjectURL(link.href);
+         }
+
+         function copyResults() {
+            if (!currentResults) return;
+
+            // Copy to clipboard
+            navigator.clipboard
+               .writeText(JSON.stringify(currentResults, null, 2))
+               .then(() => {
+                  // Show toast notification
+                  alert("Results copied to clipboard!");
+               })
+               .catch((err) => {
+                  console.error("Failed to copy results: ", err);
+                  alert("Failed to copy results. Please try again.");
+               });
+         }
+
+         function imageToBlob(img) {
+            return new Promise((resolve, reject) => {
+               // Create a canvas to draw the image
+               const canvas = document.createElement("canvas");
+               canvas.width = img.width;
+               canvas.height = img.height;
+               const ctx = canvas.getContext("2d");
+
+               // Draw image to canvas
+               ctx.drawImage(img, 0, 0);
+
+               // Convert to blob
+               canvas.toBlob(
+                  (blob) => {
+                     if (blob) {
+                        resolve(blob);
+                     } else {
+                        reject(new Error("Failed to convert image to blob"));
+                     }
+                  },
+                  "image/jpeg",
+                  0.9
+               );
+            });
+         }
+
+         // Load API info on page load
+         window.addEventListener("DOMContentLoaded", () => {
+            // Load API info
+            loadApiInfo();
+         });
+
+         // Load API information
+         async function loadApiInfo() {
+            try {
+               // Get model info
+               const modelResponse = await fetch(`${API_URL}/models`);
+               const models = await modelResponse.json();
+
+               if (models.length > 0) {
+                  modelName.textContent = models[0].name;
+
+                  // Create class legend
+                  classLegend.innerHTML = "";
+                  models[0].classes.forEach((className, index) => {
+                     const color = CLASS_COLORS[index % CLASS_COLORS.length];
+                     const legendItem = document.createElement("div");
+                     legendItem.className = "legend-item d-flex align-items-center mb-2";
+                     legendItem.innerHTML = `
+                            <div class="class-color" style="background-color: ${color}"></div>
+                            <span>${className}</span>
+                        `;
+                     classLegend.appendChild(legendItem);
+                  });
+               }
+
+               // Get dataset info
+               const datasetResponse = await fetch(`${API_URL}/dataset`);
+               const dataset = await datasetResponse.json();
+
+               if (dataset) {
+                  datasetSize.textContent = `${dataset.num_images} images`;
+                  datasetDetails.textContent = `${dataset.num_classes} waste categories from İstanbul`;
+               }
+            } catch (error) {
+               console.error("Error loading API info:", error);
+               modelName.textContent = "YOLOv8 Model";
+               datasetSize.textContent = "Synthetic Dataset";
+            }
+         }
+      </script>
+   </body>
+</html>

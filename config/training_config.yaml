@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: MIT
+
+task: "detect"
+mode: "train"
+project: "istanbul-waste"
+name: "synthetic_only"
+
+model:
+   name: "yolov8m.pt"
+   pretrained: true
+
+data:
+   path: "dataset"
+   yaml_path: "dataset/data.yaml"
+   train: "train"
+   val: "val"
+   test: "test"
+   classes: 8
+
+# Training hyperparameters
+hyperparameters:
+   epochs: 100
+   batch_size: 16
+   patience: 20 # Early stopping patience
+   image_size: [1280, 720] # Training resolution
+   optimizer: "SGD" # SGD optimizer
+   lr0: 0.01 # Initial learning rate
+   lrf: 0.01 # Final learning rate as a fraction of lr0
+   momentum: 0.937
+   weight_decay: 0.0005
+   warmup_epochs: 3.0
+   warmup_momentum: 0.8
+   warmup_bias_lr: 0.1
+   box: 7.5 # Box loss gain
+   cls: 0.5 # Class loss gain
+   hsv_h: 0.015 # HSV-Hue augmentation
+   hsv_s: 0.7 # HSV-Saturation augmentation
+   hsv_v: 0.4 # HSV-Value augmentation
+   degrees: 0.0 # Rotation augmentation
+   translate: 0.1 # Translation augmentation
+   scale: 0.5 # Scale augmentation
+   shear: 0.0 # Shear augmentation
+   perspective: 0.0 # Perspective augmentation
+   flipud: 0.0 # Vertical flip probability
+   fliplr: 0.5 # Horizontal flip probability
+   mosaic: 1.0 # Mosaic augmentation
+   mixup: 0.0 # Mixup augmentation
+   copy_paste: 0.0 # Copy-paste augmentation
+
+evaluation:
+   conf_thres: 0.001  n
+   iou_thres: 0.6
+   max_det: 300
+   metrics:
+      - "precision"
+      - "recall"
+      - "mAP50"
+      - "mAP50-95"
+   per_class: true
+
+# Output settings
+output:
+   weights_dir: "weights"
+   save_period: 10
+   exist_ok: false
+   plots: true
+   verbose: true
+   save_txt: true
+   save_conf: true
+   save_json: true
+   save: true
+
+logging:
+   level: "INFO"
+   file: "logs/training.log"
