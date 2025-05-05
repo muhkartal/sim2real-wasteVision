@@ -11,10 +11,6 @@
 </div>
 
 <p align="center">
-  <img src="docs/figures/logo.png" alt="İstanbul Waste Detection Platform" width="600"/>
-</p>
-
-<p align="center">
   <b>A comprehensive AI platform for drone-based waste detection in urban environments</b>
 </p>
 
@@ -215,9 +211,11 @@ The platform consists of several key components:
    -  Interactive adjustments
    -  Responsive design for various devices
 
-<p align="center">
-  <img src="docs/figures/arch.png" alt="İstanbul Waste Detection Platform" width="600"/>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/arch-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/figures/arch.png">
+  <img alt="Fallback image description" src="docs/figures/arch-dark.png">
+</picture>
 
 ### Performance
 
