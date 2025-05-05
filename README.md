@@ -360,12 +360,12 @@ For questions, support, or collaboration opportunities, please contact:
 
 <div align="center">
   <p>
-    <strong> Sim2real-wasteVision</strong>
+    <strong>Sim2real-wasteVision</strong>
   </p>
   <p>
-    <a href="https://github.com/muhkartal">GitHub</a> •
-    <a href="https://github.com/muhkartal"">Documentation</a> •
-    <a href="https://kartal.dev">Developer Website</a>
+    <a href="https://github.com/muhkartal/netsentry">GitHub</a> •
+    <a href="https://hub.docker.com/r/muhkartal/netsentry">Docker Hub</a> •
+    <a href="https://kartal.dev/">Developer Website</a>s
   </p>
 </div>
 <div align="center">
