@@ -348,14 +348,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 -  [Unreal Engine](https://www.unrealengine.com/) for the rendering engine
 -  [FastAPI](https://fastapi.tiangolo.com/) for the API framework
 
-## Contact
-
-For questions, support, or collaboration opportunities, please contact:
-
--  **Email**: your.email@example.com
--  **Website**: https://yourdomain.com
--  **GitHub**: https://github.com/yourusername
-
 ---
 
 <div align="center">
